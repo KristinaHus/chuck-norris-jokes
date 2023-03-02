@@ -8,7 +8,7 @@
   "bracketSameLine": true,
   "overrides": [
     {
-      "files": ["*.css", "package.json"],
+      "files": ["*.css", "*.json"],
       "options": {
         "tabWidth": 2,
         "useTabs": false
