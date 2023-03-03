@@ -1,8 +1,9 @@
 import { initDB } from 'react-indexed-db';
 import { Helmet } from 'react-helmet';
+import { RouterProvider } from 'react-router-dom';
 
-import { Home } from './pages/Home';
 import { DBConfig } from './config/DBConfig';
+import { router } from './navigation/router';
 
 initDB(DBConfig);
 
@@ -12,7 +13,7 @@ function App() {
 			<Helmet>
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
 			</Helmet>
-			<Home />
+			<RouterProvider router={router} />
 		</div>
 	);
 }
