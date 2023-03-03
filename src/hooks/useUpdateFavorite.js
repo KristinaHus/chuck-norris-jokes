@@ -18,7 +18,7 @@ export function useUpdateFavorite(item) {
 
 	const getAllFavorites = async () => {
 		const favorites = await fetchFavorites();
-		if (favorites.findIndex((favorite) => favorite._id === item.id) > -1) {
+		if (favorites.findIndex((favorite) => favorite.id === item.id) > -1) {
 			setIsFavorite(true);
 		}
 	};
@@ -37,7 +37,7 @@ export function useUpdateFavorite(item) {
 						'You already have the maximum amount of favorite jokes. Remove one to be able to add a new one.'
 					);
 				} else {
-					add({ _id: item.id, value: item.value }).then(
+					add({ id: item.id, value: item.value }).then(
 						(id) => {
 							console.log('ID Generated: ', id);
 						},
@@ -47,8 +47,8 @@ export function useUpdateFavorite(item) {
 					);
 				}
 			} else {
-				getByIndex('_id', item.id).then((dbRecord) => {
-					deleteRecord(dbRecord.id);
+				getByIndex('id', item.id).then((dbRecord) => {
+					deleteRecord(dbRecord._id);
 				});
 			}
 			return isMaxReached ? false : !favorite;

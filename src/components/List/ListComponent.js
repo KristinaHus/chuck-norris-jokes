@@ -1,8 +1,10 @@
 import { List } from '@mui/material';
+import PropTypes from 'prop-types';
+
 import { ListItemComponent } from './ListItemComponent';
 
-export const ListComponent = () => {
-	const data = [
+export const ListComponent = ({ data, onPress }) => {
+	const listData = data || [
 		{ id: 'one', value: 'one' },
 		{ id: 'two', value: 'two' },
 		{ id: 'three', value: 'three' },
@@ -19,13 +21,16 @@ export const ListComponent = () => {
 
 	return (
 		<div>
-			<List
-				sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-				aria-label="contacts">
-				{data.map((item) => (
-					<ListItemComponent item={item} key={item.id} />
+			<List sx={{ width: '100%', bgcolor: 'background.paper' }} aria-label="contacts">
+				{listData.map((item) => (
+					<ListItemComponent item={item} key={item.id} onPress={onPress} />
 				))}
 			</List>
 		</div>
 	);
+};
+
+ListComponent.propTypes = {
+	data: PropTypes.array,
+	onPress: PropTypes.func
 };

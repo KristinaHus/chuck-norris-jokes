@@ -4,9 +4,9 @@ export const DBConfig = {
 	objectStoresMeta: [
 		{
 			store: 'favorite',
-			storeConfig: { keyPath: 'id', autoIncrement: true },
+			storeConfig: { keyPath: '_id', autoIncrement: true },
 			storeSchema: [
-				{ name: '_id', keypath: '_id', options: { unique: true } },
+				{ name: 'id', keypath: 'id', options: { unique: true } },
 				{ name: 'value', keypath: 'value' }
 			]
 		}

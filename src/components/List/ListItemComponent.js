@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 
 import { useUpdateFavorite } from '../../hooks/useUpdateFavorite';
 
-export const ListItemComponent = ({ item }) => {
+export const ListItemComponent = ({ item, onPress }) => {
 	const [isError, setIsError] = useState(false);
 	const [isFavorite, updateFavorite, error] = useUpdateFavorite(item);
 
@@ -28,6 +28,11 @@ export const ListItemComponent = ({ item }) => {
 	const handleClick = () => {
 		updateFavorite();
 		setIsError(!!error);
+		if (onPress) {
+			setTimeout(() => {
+				onPress();
+			}, 600);
+		}
 	};
 
 	return (
@@ -52,5 +57,6 @@ export const ListItemComponent = ({ item }) => {
 };
 
 ListItemComponent.propTypes = {
-	item: PropTypes.object
+	item: PropTypes.object,
+	onPress: PropTypes.func
 };
