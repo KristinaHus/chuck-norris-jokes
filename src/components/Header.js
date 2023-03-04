@@ -35,15 +35,26 @@ export const Header = ({ title }) => {
 						{title}
 					</Typography>
 				</Box>
-				<IconButton
-					size="large"
-					aria-label="see favorites"
-					aria-controls="menu-appbar"
-					aria-haspopup="true"
-					onClick={handleClick}
-					color="inherit">
-					<FavoriteIcon />
-				</IconButton>
+				<Box
+					sx={{
+						display: 'flex',
+						alignItems: 'center',
+						flexDirection: 'column',
+						justifyContent: 'center'
+					}}>
+					<Typography variant="h8" color="white" component="div">
+						My Favorites
+					</Typography>
+					<IconButton
+						size="large"
+						aria-label="see favorites"
+						aria-controls="menu-appbar"
+						aria-haspopup="true"
+						onClick={handleClick}
+						color="inherit">
+						<FavoriteIcon />
+					</IconButton>
+				</Box>
 			</Toolbar>
 		</AppBar>
 	);
