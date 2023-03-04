@@ -1,22 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { initDB } from 'react-indexed-db';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { Helmet } from 'react-helmet';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { RouterProvider } from 'react-router-dom';
+
+import { DBConfig } from './config/DBConfig';
+import { router } from './navigation/router';
+
+initDB(DBConfig);
+const queryClient = new QueryClient();
 
 function App() {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer">
-					Learn React
-				</a>
-			</header>
+		<div>
+			<Helmet>
+				<meta name="viewport" content="initial-scale=1, width=device-width" />
+			</Helmet>
+			<QueryClientProvider client={queryClient}>
+				<ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+				<RouterProvider router={router} />
+			</QueryClientProvider>
 		</div>
 	);
 }
