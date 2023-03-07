@@ -22,8 +22,7 @@ export const Favorite = () => {
 	return (
 		<Container maxWidth="xl">
 			<Header title="List of your favorite jokes" />
-			<Paper>
-				{console.log('favorites', favorites.length)}
+			<Paper data-testid="ListComponent">
 				<ListComponent data={favorites} onPress={fetchFavorites} />
 			</Paper>
 		</Container>
