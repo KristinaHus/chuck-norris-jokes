@@ -15,7 +15,7 @@ import { useUpdateFavorite } from '../../hooks/useUpdateFavorite';
 
 export const ListItemComponent = ({ item, onPress }) => {
 	const [isError, setIsError] = useState(false);
-	const [isFavorite, updateFavorite, error] = useUpdateFavorite(item);
+	const { isFavorite, updateFavorite, error } = useUpdateFavorite(item);
 
 	useEffect(() => {
 		setIsError(!!error);
@@ -31,23 +31,17 @@ export const ListItemComponent = ({ item, onPress }) => {
 		if (onPress) {
 			setTimeout(() => {
 				onPress();
-			}, 600);
+			}, 500);
 		}
 	};
 
 	return (
-		<ListItem disablePadding>
-			<ListItemButton onClick={handleClick}>
+		<ListItem disablePadding data-testid="ListItem">
+			<ListItemButton onClick={handleClick} data-testid="favoriteButton">
 				<ListItemIcon>{isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}</ListItemIcon>
 				<ListItemText primary={item.value} />
 			</ListItemButton>
-			<Snackbar
-				open={isError}
-				autoHideDuration={1000 * 3}
-				onClose={handleClose}
-				// message={error}
-				// action={action}
-			>
+			<Snackbar open={isError} autoHideDuration={1000 * 3} onClose={handleClose}>
 				<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
 					{error}
 				</Alert>

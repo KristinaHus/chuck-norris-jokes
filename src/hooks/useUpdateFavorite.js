@@ -18,7 +18,11 @@ export function useUpdateFavorite(item) {
 
 	const getAllFavorites = async () => {
 		const favorites = await fetchFavorites();
-		if (favorites.findIndex((favorite) => favorite.id === item.id) > -1) {
+		if (
+			favorites.findIndex((favorite) => {
+				return favorite.id === item.id;
+			}) > -1
+		) {
 			setIsFavorite(true);
 		}
 	};
@@ -55,5 +59,5 @@ export function useUpdateFavorite(item) {
 		});
 	};
 
-	return [isFavorite, updateFavorite, error];
+	return { isFavorite, updateFavorite, error };
 }

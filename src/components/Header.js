@@ -26,6 +26,7 @@ export const Header = ({ title }) => {
 							aria-label="see favorites"
 							aria-controls="menu-appbar"
 							aria-haspopup="true"
+							data-testid="BackBtn"
 							onClick={goBack}
 							color="inherit">
 							<ArrowBackIcon />
@@ -50,6 +51,7 @@ export const Header = ({ title }) => {
 						aria-label="see favorites"
 						aria-controls="menu-appbar"
 						aria-haspopup="true"
+						data-testid="FavoriteBtn"
 						onClick={handleClick}
 						color="inherit">
 						<FavoriteIcon />
