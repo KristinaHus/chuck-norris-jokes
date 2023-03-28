@@ -8,10 +8,14 @@ export const getJoke = async () => {
 };
 
 export const getJokes = async (amount = LIMIT_BY_VIEW) => {
-	const responses = [];
-	for (let i = 0; i < amount; i++) {
-		const res = await axios.get(`${HOST_URL}${JOKE_ROUTE}`);
-		responses.push(res.data);
+	try {
+		const req = [];
+		for (let i = 0; i < amount; i++) {
+			req.push(axios.get(`${HOST_URL}${JOKE_ROUTE}`));
+		}
+		const responses = await Promise.all(req);
+		return responses.map((item) => item.data);
+	} catch (e) {
+		console.log('Error get initial jokes', e);
 	}
-	return responses;
 };
